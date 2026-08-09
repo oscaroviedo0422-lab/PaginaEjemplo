@@ -1,0 +1,729 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Postres Creativos | Ejemplo de Proyecto Web</title>
+  <meta name="description" content="Ejemplo de proyecto web para venta y presentacion de postres creativos, ideal para mostrar disenio, estructura e interaccion." />
+  <style>
+    :root {
+      --bg: #fff8f2;
+      --surface: #fff;
+      --text: #3e2b24;
+      --muted: #7a5a47;
+      --primary: #d66b45;
+      --secondary: #f2c9b6;
+      --accent: #f8b195;
+      --border: rgba(62, 43, 36, 0.15);
+      --radius: 24px;
+      font-family: Inter, system-ui, sans-serif;
+      color: var(--text);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: radial-gradient(circle at top left, #fff3e9 0%, #fff8f2 55%, #f6ecdf 100%);
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1200px, calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 1.25rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255, 248, 242, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand strong {
+      font-size: 1.25rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 1.75rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    .hero {
+      display: grid;
+      gap: 1.75rem;
+      align-items: center;
+      padding: 4rem 0 3rem;
+    }
+
+    .hero-content {
+      max-width: 560px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 4vw, 4.25rem);
+      margin: 0;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p {
+      margin: 1.5rem 0 0;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.95rem 1.7rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      text-decoration: none;
+    }
+
+    .button-primary {
+      background: linear-gradient(135deg, var(--primary), #f28652);
+      color: #fff;
+      box-shadow: 0 18px 40px rgba(214, 107, 69, 0.18);
+    }
+
+    .button-secondary {
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--text);
+      border: 1px solid rgba(138, 92, 56, 0.16);
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .hero-visual {
+      background: linear-gradient(180deg, #fff9f5 0%, #ffe9d9 100%);
+      border: 1px solid var(--border);
+      border-radius: 32px;
+      overflow: hidden;
+      padding: 1rem;
+    }
+
+    .hero-visual .card-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .card-grid img {
+      border-radius: 24px;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-visual .hero-card {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .hero-visual .highlight {
+      background: rgba(248, 177, 149, 0.8);
+      border-radius: 28px;
+      padding: 1rem;
+      display: grid;
+      gap: 0.6rem;
+    }
+
+    .hero-visual .highlight strong {
+      font-size: 1.1rem;
+      color: var(--text);
+    }
+
+    section {
+      padding: 3rem 0;
+    }
+
+    .section-heading {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .section-heading span {
+      color: var(--primary);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.8rem;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(2rem, 3vw, 2.75rem);
+    }
+
+    .grid-3 {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: 0 16px 40px rgba(157, 114, 88, 0.08);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1.75rem;
+    }
+
+    .feature-item {
+      display: grid;
+      gap: 0.65rem;
+      background: #fff8f2;
+      border-radius: 20px;
+      padding: 1rem;
+      border: 1px solid rgba(245, 191, 172, 0.55);
+    }
+
+    .feature-item strong {
+      display: block;
+      color: var(--text);
+    }
+
+    .products-top {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .products-top input,
+    .products-top select {
+      width: min(320px, 100%);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.95rem 1.15rem;
+      background: #fff;
+      outline: none;
+      color: var(--text);
+    }
+
+    .product-grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .product-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 28px 60px rgba(166, 111, 80, 0.14);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .product-card .product-content {
+      padding: 1.3rem;
+      display: grid;
+      gap: 0.7rem;
+    }
+
+    .product-card .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.4rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      background: rgba(246, 198, 176, 0.55);
+      color: var(--text);
+    }
+
+    .product-card h3 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    .product-card .price {
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .product-card button {
+      width: 100%;
+      border: none;
+      border-radius: 999px;
+      padding: 0.95rem;
+      cursor: pointer;
+      background: linear-gradient(135deg, #f28c60, #e06744);
+      color: #fff;
+      font-weight: 700;
+      transition: background 0.25s ease;
+    }
+
+    .product-card button:hover {
+      background: linear-gradient(135deg, #e06744, #f28c60);
+    }
+
+    .testimonials {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .testimonial {
+      background: #fff7f1;
+      border-radius: 28px;
+      border: 1px solid rgba(227, 170, 145, 0.4);
+      padding: 1.75rem;
+      box-shadow: 0 16px 40px rgba(245, 185, 163, 0.16);
+    }
+
+    .testimonial p {
+      margin: 0 0 1.25rem;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    .testimonial strong {
+      color: var(--text);
+    }
+
+    .contact-grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: 1.1fr 0.9fr;
+    }
+
+    .contact-form {
+      background: var(--surface);
+      border-radius: 30px;
+      padding: 2rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 18px 40px rgba(178, 122, 94, 0.1);
+    }
+
+      .contact-form h3,
+      .contact-form p,
+      .contact-form .feature-item {
+        margin: 0 0 1rem;
+      }
+
+      .contact-form a {
+        color: var(--primary);
+        text-decoration: none;
+      }
+
+      .contact-form a:hover {
+        text-decoration: underline;
+      border: 1px solid rgba(238, 178, 150, 0.35);
+    }
+
+    .info-panel h3 {
+      margin: 0;
+      font-size: 1.4rem;
+    }
+
+    .info-panel p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    footer {
+      padding: 2rem 0 3rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+      text-align: center;
+    }
+
+    .badge-list {
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .badge {
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(137, 87, 53, 0.12);
+      border-radius: 999px;
+      padding: 0.75rem 1rem;
+      font-weight: 600;
+    }
+
+    @media (max-width: 980px) {
+      .brand {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.9rem;
+        margin-top: 1rem;
+      }
+
+      nav a {
+        margin-left: 0;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual .hero-card {
+        grid-template-columns: 1fr;
+      }
+
+      .grid-3,
+      .product-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .product-grid {
+        gap: 1rem;
+      }
+
+      .products-top {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .products-top input,
+      .products-top select {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 620px) {
+      header {
+        padding: 1rem 0.75rem;
+      }
+
+      .brand {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero {
+        padding-top: 2.5rem;
+      }
+
+      .section-heading {
+        gap: 0.35rem;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .products-top input,
+      .products-top select {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container brand">
+      <strong>Delicias Web</strong>
+      <nav aria-label="Navegacion principal">
+        <a href="#productos">Productos</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#testimonios">Testimonios</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-content">
+        <span>Proyecto de ejemplo</span>
+        <h1 id="hero-title">Postres creativos para tu marca y tu sitio web</h1>
+        <p>Presenta tu proyecto con una pagina moderna, colorida y profesional. Este ejemplo muestra disenio, estructura, interaccion y experiencia de usuario para una pasteleria digital.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#productos">Explorar postres</a>
+          <a class="button button-secondary" href="#contacto">Solicitar asesoria</a>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-card">
+          <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80" alt="Pastel decorado con frutas" />
+          <img src="https://cdn7.kiwilimon.com/recetaimagen/22138/640x426/12916.jpg.webp" alt="Cupcakes decorados" />
+          <div class="highlight">
+            <strong>¡Necesitas una pagina para tu negocio?</strong>
+            <p>Este disenio es ideal para presentar un portafolio de postres, campañas de ventas y servicios de disenio web para comercios creativos.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="servicios" aria-labelledby="servicios-title">
+      <div class="section-heading">
+        <span>¿Qué ofrecemos?</span>
+        <h2 id="servicios-title">Una presencia digital dulce y profesional</h2>
+      </div>
+      <div class="grid-3">
+        <article class="card">
+          <h3>Disenio con sabor</h3>
+          <p>Disenios visuales adaptados a tu identidad para captar clientes desde el primer vistazo, tanto en computadoras como en mviles.</p>
+        </article>
+        <article class="card">
+          <h3>Contenido listo para vender</h3>
+          <p>Secciones pensadas para promover productos, presentar mens, destacar novedades y cerrar ventas con un mensaje claro.</p>
+        </article>
+        <article class="card">
+          <h3>Interaccin real</h3>
+          <p>Funciones dinmicas como filtros, formularios de contacto y llamadas a la accin integradas que mejoran la experiencia del usuario.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="productos" aria-labelledby="productos-title">
+      <div class="section-heading">
+        <span>Catalogo</span>
+        <h2 id="productos-title">Postres destacados</h2>
+      </div>
+      <div class="products-top">
+        <input id="search" type="search" placeholder="Buscar postres..." aria-label="Buscar postres" />
+        <select id="category" aria-label="Filtrar por categoria">
+          <option value="all">Todas las categorias</option>
+          <option value="pasteles">Pasteles</option>
+          <option value="cupcakes">Cupcakes</option>
+          <option value="galletas">Galletas</option>
+        </select>
+      </div>
+      <div class="product-grid" id="productGrid">
+        <article class="product-card" data-category="pasteles" data-name="Pastel de Vainilla" tabindex="0">
+          <img src="https://peopleenespanol.com/thmb/7Ag_NHqyoOeHd03x6SpedGGO0Ok=/750x0/filters:no_upscale():max_bytes(150000):strip_icc()/pastel-de-vainilla-bc3a1sico-2000-d5538c31da3b4b6dba9940393128f2b2.jpg" alt="Pastel de vainilla" />
+          <div class="product-content">
+            <span class="tag">Pastel</span>
+            <h3>Pastel de Vainilla</h3>
+            <p>Perfecto para celebraciones elegantes, con glaseado suave y flores comestibles.</p>
+            <p class="price">COP 70.000</p>
+            <button type="button" onclick="reserveProduct('Pastel de Vainilla')">Solicitar</button>
+          </div>
+        </article>
+        <article class="product-card" data-category="cupcakes" data-name="Cupcakes de Fresa" tabindex="0">
+          <img src="https://www.kioskodedulcinea.com/wp-content/uploads/2019/08/cucake-fresa-kiosko-de-dulcinea-min-min-1.jpg" alt="Cupcakes de fresa" />
+          <div class="product-content">
+            <span class="tag">Cupcake</span>
+            <h3>Cupcakes de Fresa</h3>
+            <p>Cupcakes de fresa con un toque de cava, crema de queso y presentación elegante.</p>
+            <p class="price">COP 20.000</p>
+            <button type="button" onclick="reserveProduct('Cupcakes de Fresa')">Solicitar</button>
+          </div>
+        </article>
+        <article class="product-card" data-category="galletas" data-name="Galletas Decoradas" tabindex="0">
+          <img src="https://cdn7.kiwilimon.com/recetaimagen/22138/640x426/12916.jpg.webp" alt="Galletas artesanales" />
+          <div class="product-content">
+            <span class="tag">Galleta</span>
+            <h3>Galletas Decoradas</h3>
+            <p>Galletas suaves y creativas con coberturas de azúcar glass al estilo Kiwilimon.</p>
+            <p class="price">COP 35.000</p>
+            <button type="button" onclick="reserveProduct('Galletas Decoradas')">Solicitar</button>
+          </div>
+        </article>
+        <article class="product-card" data-category="pasteles" data-name="Pastel Red Velvet" tabindex="0">
+          <img src="https://cdn7.kiwilimon.com/recetaimagen/735/640x426/12602.jpg.webp" alt="Pastel Red Velvet" />
+          <div class="product-content">
+            <span class="tag">Pastel</span>
+            <h3>Pastel Red Velvet</h3>
+            <p>Pastel suave y colorido con el clásico betún de queso crema al estilo Kiwilimon.</p>
+            <p class="price">COP 60.000</p>
+            <button type="button" onclick="reserveProduct('Pastel Red Velvet')">Solicitar</button>
+          </div>
+        </article>
+        <article class="product-card" data-category="cupcakes" data-name="Cupcakes de Chocolate" tabindex="0">
+          <img src="https://cdn7.kiwilimon.com/recetaimagen/21434/640x426/11491.jpg.webp" alt="Cupcakes de chocolate" />
+          <div class="product-content">
+            <span class="tag">Cupcake</span>
+            <h3>Cupcakes de Chocolate</h3>
+            <p>Recién horneados con ganache y decoración artesanal para paladares exigentes.</p>
+            <p class="price">COP 20.000</p>
+            <button type="button" onclick="reserveProduct('Cupcakes de Chocolate')">Solicitar</button>
+          </div>
+        </article>
+        <article class="product-card" data-category="galletas" data-name="Mini Galletas de Avena" tabindex="0">
+          <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiAs_2htFT7YxhfuWEHXShinUO2YMCxW_lNywfqwDdqJRxSbbyaMVNlBM5eYJvgHCMVo741G8BFMm8L3r7TJ1OCN3HrnNZsAhABbGv-w5o5J0P-xtO2R5W-ASzQwre3VsKWR6lnkneRbfMf/s1600/galletas-avena-sabores.jpg" alt="Mini galletas de avena" />
+          <div class="product-content">
+            <span class="tag">Galleta</span>
+            <h3>Mini Galletas de Avena</h3>
+            <p>Una opción más ligera y casera para desayunos, paquetes personalizados.</p>
+            <p class="price">COP 30.000</p>
+            <button type="button" onclick="reserveProduct('Mini Galletas de Avena')">Solicitar</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="testimonios" aria-labelledby="testimonios-title">
+      <div class="section-heading">
+        <span>Confianza</span>
+        <h2 id="testimonios-title">Qué dicen nuestros clientes</h2>
+      </div>
+      <div class="testimonials">
+        <article class="testimonial">
+          <p>Esta pgina de ejemplo es perfecta para presentar propuestas de diseo web a clientes de pasteleras. La estructura es clara, atractiva y muy fcil de adaptar</p>
+          <strong> Valeria R., diseadora web</strong>
+        </article>
+        <article class="testimonial">
+          <p>Me encanta la forma en que el catlogo interactivo funciona como una vitrina en lnea. Es un ejemplo profesional para vender el trabajo de creacin de sitios web</p>
+          <strong> Juan M., emprendedor gastronmico</strong>
+        </article>
+      </div>
+    </section>
+
+        <section id="contacto" aria-labelledby="contacto-title">
+      <div class="section-heading">
+        <span>Contacto</span>
+        <h2 id="contacto-title">Medios de contacto del proveedor</h2>
+      </div>
+      <div class="contact-grid">
+        <aside class="contact-form" aria-label="Información de contacto del proveedor">
+          <h3>Delicias Web</h3>
+          <p>Usa estos canales directos para solicitar asesoría o pedir información sobre este proyecto.</p>
+          <div class="feature-item">
+            <strong>Responsable</strong>
+            <p>Carla Méndez</p>
+          </div>
+          <div class="feature-item">
+            <strong>Teléfono</strong>
+            <p><a href="tel:+525512345678">+52 55 1234 5678</a></p>
+          </div>
+          <div class="feature-item">
+            <strong>Correo</strong>
+            <p><a href="mailto:carla.mendez@deliciasweb.mx">carla.mendez@deliciasweb.mx</a></p>
+          </div>
+          <div class="feature-item">
+            <strong>WhatsApp</strong>
+            <p><a href="https://wa.me/525512345678" target="_blank" rel="noreferrer">Chat directo</a></p>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>Ejemplo de p�gina web de venta de postres creada para presentar un proyecto y asesor�a digital.</p>
+      <div class="badge-list">
+        <span class="badge">HTML5</span>
+        <span class="badge">CSS3</span>
+        <span class="badge">JavaScript</span>
+        <span class="badge">Responsive</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const products = document.querySelectorAll('.product-card');
+    const searchInput = document.getElementById('search');
+    const categorySelect = document.getElementById('category');
+
+    function normalize(text) {
+      return text.toLowerCase().trim();
+    }
+
+    function filterProducts() {
+      const searchValue = normalize(searchInput.value);
+      const selectedCategory = categorySelect.value;
+
+      products.forEach((card) => {
+        const name = normalize(card.dataset.name);
+        const category = card.dataset.category;
+        const matchesSearch = name.includes(searchValue);
+        const matchesCategory = selectedCategory === 'all' || category === selectedCategory;
+
+        card.style.display = matchesSearch && matchesCategory ? 'grid' : 'none';
+      });
+    }
+
+    searchInput.addEventListener('input', filterProducts);
+    categorySelect.addEventListener('change', filterProducts);
+
+    function reserveProduct(productName) {
+      const message = `Has seleccionado ${productName}. Contacta al proveedor para recibir más información sobre el pedido.`;
+      alert(message);
+    }
+  </script>
+</body>
+</html>
+
+

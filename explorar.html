@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Explorar | Delicias Web</title>
+  <meta name="description" content="CatÃ¡logo de productos de postres para mostrar el diseÃ±o del sitio web." />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-content">
+      <strong class="brand">Delicias Web</strong>
+      <nav>
+        <a href="index.html">Inicio</a>
+        <a href="explorar.html">Explorar</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero hero-explore">
+      <div class="container hero-content">
+        <span class="eyebrow">CatÃ¡logo</span>
+        <h1>Productos de postres destacados</h1>
+        <p>Explora presentaciones de pasteles, cupcakes y galletas en una pÃ¡gina profesional.</p>
+      </div>
+    </section>
+
+    <section class="container section-products">
+      <div class="section-header">
+        <span>CatÃ¡logo</span>
+        <h2>Selecciona un producto y revisa su presentaciÃ³n</h2>
+      </div>
+      <div class="filter-row">
+        <input id="search" type="search" placeholder="Buscar postres..." aria-label="Buscar postres" />
+        <select id="category" aria-label="Filtrar por categorÃ­a">
+          <option value="all">Todas las categorÃ­as</option>
+          <option value="pasteles">Pasteles</option>
+          <option value="cupcakes">Cupcakes</option>
+          <option value="galletas">Galletas</option>
+        </select>
+      </div>
+
+      <div class="product-grid" id="productGrid">
+        <article class="product-card" data-category="pasteles" data-name="Pastel de Vainilla">
+          <img src="https://peopleenespanol.com/thmb/7Ag_NHqyoOeHd03x6SpedGGO0Ok=/750x0/filters:no_upscale():max_bytes(150000):strip_icc()/pastel-de-vainilla-bc3a1sico-2000-d5538c31da3b4b6dba9940393128f2b2.jpg" alt="Pastel de vainilla" />
+          <div class="product-content">
+            <span class="tag">Pastel</span>
+            <h3>Pastel de Vainilla</h3>
+            <p>Delicado pastel con glaseado suave y decoraciÃ³n de flores comestibles.</p>
+            <p class="price">COP 280.000</p>
+          </div>
+        </article>
+        <article class="product-card" data-category="cupcakes" data-name="Cupcakes de Fresa">
+          <img src="https://www.kioskodedulcinea.com/wp-content/uploads/2019/08/cucake-fresa-kiosko-de-dulcinea-min-min-1.jpg" alt="Cupcakes de fresa" />
+          <div class="product-content">
+            <span class="tag">Cupcake</span>
+            <h3>Cupcakes de Fresa</h3>
+            <p>Cupcakes de fresa con un toque de cava, crema de queso y presentación elegante.</p>
+            <p class="price">COP 12.000 c/u</p>
+          </div>
+        </article>
+        <article class="product-card" data-category="galletas" data-name="Galletas Decoradas">
+          <img src="https://cdn7.kiwilimon.com/recetaimagen/22138/640x426/12916.jpg.webp" alt="Galletas artesanales" />
+          <div class="product-content">
+            <span class="tag">Galleta</span>
+            <h3>Galletas Decoradas</h3>
+            <p>Galletas suaves y creativas con coberturas de azúcar glass al estilo Kiwilimon.</p>
+            <p class="price">COP 95.000</p>
+          </div>
+        </article>
+        <article class="product-card" data-category="pasteles" data-name="Pastel Red Velvet">
+          <img src="https://cdn7.kiwilimon.com/recetaimagen/735/640x426/12602.jpg.webp" alt="Pastel Red Velvet" />
+          <div class="product-content">
+            <span class="tag">Pastel</span>
+            <h3>Pastel Red Velvet</h3>
+            <p>Pastel suave y colorido con el clásico betún de queso crema al estilo Kiwilimon.</p>
+            <p class="price">COP 320.000</p>
+          </div>
+        </article>
+        <article class="product-card" data-category="cupcakes" data-name="Cupcakes de Chocolate">
+          <img src="https://cdn7.kiwilimon.com/recetaimagen/21434/640x426/11491.jpg.webp" alt="Cupcakes de chocolate" />
+          <div class="product-content">
+            <span class="tag">Cupcake</span>
+            <h3>Cupcakes de Chocolate</h3>
+            <p>ClÃ¡sicos con ganache y decoraciÃ³n artesanal.</p>
+            <p class="price">COP 13.000 c/u</p>
+          </div>
+        </article>
+        <article class="product-card" data-category="galletas" data-name="Mini Galletas de Avena">
+          <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiAs_2htFT7YxhfuWEHXShinUO2YMCxW_lNywfqwDdqJRxSbbyaMVNlBM5eYJvgHCMVo741G8BFMm8L3r7TJ1OCN3HrnNZsAhABbGv-w5o5J0P-xtO2R5W-ASzQwre3VsKWR6lnkneRbfMf/s1600/galletas-avena-sabores.jpg" alt="Mini galletas de avena" />
+          <div class="product-content">
+            <span class="tag">Galleta</span>
+            <h3>Mini Galletas de Avena</h3>
+            <p>OpciÃ³n ligera y casera para desayunos y paquetes especiales.</p>
+            <p class="price">COP 82.000</p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>CatÃ¡logo de productos de postres creado para mostrar un ejemplo de sitio web funcional.</p>
+    </div>
+  </footer>
+
+  <script>
+    const products = document.querySelectorAll('.product-card');
+    const searchInput = document.getElementById('search');
+    const categorySelect = document.getElementById('category');
+
+    function normalize(text) {
+      return text.toLowerCase().trim();
+    }
+
+    function filterProducts() {
+      const searchValue = normalize(searchInput.value);
+      const selectedCategory = categorySelect.value;
+
+      products.forEach(card => {
+        const name = normalize(card.dataset.name);
+        const category = card.dataset.category;
+        const show = (selectedCategory === 'all' || category === selectedCategory) && name.includes(searchValue);
+        card.style.display = show ? 'grid' : 'none';
+      });
+    }
+
+    searchInput.addEventListener('input', filterProducts);
+    categorySelect.addEventListener('change', filterProducts);
+  </script>
+</body>
+</html>
+
+
